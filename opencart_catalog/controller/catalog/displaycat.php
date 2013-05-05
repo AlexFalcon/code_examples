@@ -2,7 +2,7 @@
 	public function index () {
 		$this->language->load('catalog/displaycat');
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->load->model('catalog/displaycat');
+		$this->load->model('catalog/displaycat'); 
 		
 		$this->data['breadcrumbs'] = array();
 		
