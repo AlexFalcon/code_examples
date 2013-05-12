@@ -2,7 +2,7 @@
 	public function index () {
 		$this->language->load('catalog/displaycat');
 		$this->document->setTitle($this->language->get('heading_title'));
-		$this->load->model('catalog/displaycat'); 
+		$this->load->model('catalog/displaycat');
 		
 		$this->data['breadcrumbs'] = array();
 		
@@ -33,7 +33,15 @@
 			'common/verx'
 		);
 		$this->data['home'] = $this->url->link('common/home');
-		$this->data['catalog'] = $this->model_catalog_displaycat->getCatalog();
+		/* echo $this->request->get['catalog']; */
+		if (isset($this->request->get['catalog'])) {
+			$catalog_id = $this->request->get['catalog'];
+		}
+		else {
+			$catalog_id = "category_id";
+		}
+		$this->data['catalog'] = $this->model_catalog_displaycat->getCatalog(0, $catalog_id);
+		
 		$this->data['img_width'] = $this->config->get('config_image_product_width');
 		$this->data['img_height'] = $this->config->get('config_image_product_height');
 			
